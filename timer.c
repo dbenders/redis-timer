@@ -99,7 +99,7 @@ int ReplyWithTimerData(RedisModuleCtx *ctx, TimerData *td) {
     RedisModule_ReplyWithString(ctx,td->sha1);
     RedisModule_ReplyWithLongLong(ctx, (long long)rem);
     RedisModule_ReplyWithLongLong(ctx,td->interval);
-    
+
     return REDISMODULE_OK;
 }
 
@@ -266,7 +266,7 @@ int RedisModule_OnLoad(RedisModuleCtx *ctx) {
     }
 
     /* register commands */
-    if (RedisModule_CreateCommand(ctx, "timer.new", TimerNewCommand, "write", 0, 0, 0) == REDISMODULE_ERR) {
+    if (RedisModule_CreateCommand(ctx, "timer.new", TimerNewCommand, "write deny-oom", 0, 0, 0) == REDISMODULE_ERR) {
         return REDISMODULE_ERR;
     }
 
